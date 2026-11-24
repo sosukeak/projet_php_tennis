@@ -46,6 +46,16 @@ if (isset($_POST['retirer2'])) {
     $_SESSION['joueur2'] = max(0 , $_SESSION['joueur2'] -1) ;
 }
 
+if(isset($_POST['demarrer'])){
+    $_SESSION['joueur1'] = 0 ;
+    $_SESSION['joueur2'] = 0 ;
+    
+}
+
+if(isset($_POST['stat'])){
+    header("Location: index.php?action=stat");
+    exit();
+}
 
 
 /*
