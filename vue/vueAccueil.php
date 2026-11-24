@@ -16,6 +16,9 @@ if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
       
         
 ?>
+
+
+
 <!-- faut faire les bouttons des deux joueurs -->
 <p>Score joueur1 : <?= $_SESSION['score1'] ?? 0 ?><br><?= $_SESSION['jeu1'] ?? 0 ?></p>
 <br><br><br>

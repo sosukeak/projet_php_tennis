@@ -38,6 +38,7 @@ if (isset($_POST['ajouter2']))  {
  * 
  * creation de l'option d'enlever des points : cause d'une erreur ou autre 
  */
+
 if (isset($_POST['retirer1'])) {
     $_SESSION['joueur1'] = max(0 , $_SESSION['joueur1'] -1) ;
 }
@@ -46,83 +47,52 @@ if (isset($_POST['retirer2'])) {
 }
 
 
+
 /*
  * cree un truc pour convertir les points 
  */
-//joueur1
-if($_SESSION['joueur1']===0) {
-    $_SESSION['score1'] =0 ;
-}
-if($_SESSION['joueur1']===1) {
-    $_SESSION['score1'] =15 ;
-}
-if($_SESSION['joueur1']===2) {
-    $_SESSION['score1'] =30 ;
-}
-if($_SESSION['joueur1']===3) {
-    $_SESSION['score1'] =40 ;
-}
-if($_SESSION['joueur1']===4) {
-    $_SESSION['score1'] ="40A" ;
-}
 
-//joueur2
-if($_SESSION['joueur2']===0) {
-    $_SESSION['score2'] =0 ;
-}
-if($_SESSION['joueur2']===1) {
-    $_SESSION['score2'] =15 ;
-}
-if($_SESSION['joueur2']===2) {
-    $_SESSION['score2'] =30 ;
-}
-if($_SESSION['joueur2']===3) {
-    $_SESSION['score2'] =40 ;
-}
-if($_SESSION['joueur2']===4) {
-    $_SESSION['score2'] ="40A" ;
-}
 
 /*
  * ont va essaye de cree un truc pour que qlq gagne un set ou jeu jsp le truc en 2 et c pas gagne lv 
  */
 
 if (!isset($_SESSION['jeu1'])) {
-    $_SESSION['jeu2'] = 0 ;
+    $_SESSION['jeu1'] = 0 ;
 }
 if (!isset($_SESSION['jeu2'])) {
     $_SESSION['jeu2'] = 0 ;
 }
 
-if ($_SESSION['joueur1']===4  && $_SESSION['joueur2']===4){
-    $_SESSION['joueur1']=3;
-    $_SESSION['joueur2']=3;
-}
-if ($_SESSION['joueur1']===5 && $_SESSION['joueur2']===3){
-    $_SESSION['joueur1']=0;
-    $_SESSION['joueur2']=0;
-    $_SESSION['jeu1'] = $_SESSION['jeu1'] + 1 ;
-    
-}
-if ($_SESSION['joueur1']===3 && $_SESSION['joueur2']===2){
-    $_SESSION['joueur1']=0;
-    $_SESSION['joueur2']=0;
-    $_SESSION['jeu1'] = $_SESSION['jeu1'] +1 ;
-    
-}
-if ($_SESSION['joueur1']===3 && $_SESSION['joueur2']===1){
-    $_SESSION['joueur1']=0;
-    $_SESSION['joueur2']=0;
-    $_SESSION['jeu2'] = $_SESSION['jeu1'] +1 ;
-    
-}
-if ($_SESSION['joueur1']===3 && $_SESSION['joueur2']===0){
-    $_SESSION['joueur1']=0;
-    $_SESSION['joueur2']=0;
-    $_SESSION['jeu1'] =$_SESSION['jeu1']+1 ;
-    
+if (
+    ($_SESSION['joueur1'] === 5 && $_SESSION['joueur2'] === 3) ||
+    ($_SESSION['joueur1'] === 4 && $_SESSION['joueur2'] <= 2)
+) {
+    $_SESSION['joueur1'] = 0;
+    $_SESSION['joueur2'] = 0;
+    $_SESSION['jeu1']++;
 }
 
+if (
+    ($_SESSION['joueur2'] === 5 && $_SESSION['joueur1'] === 3) ||
+    ($_SESSION['joueur2'] === 4 && $_SESSION['joueur1'] <= 2)
+) {
+    $_SESSION['joueur1'] = 0;
+    $_SESSION['joueur2'] = 0;
+    $_SESSION['jeu2']++;
+}
+
+if (($_SESSION['joueur2'] === 4 && $_SESSION['joueur1'] === 4) )   {
+    $_SESSION['joueur1'] = 0;
+    $_SESSION['joueur2'] = 0;
+}
+
+
+
+$pointsMap = [0 => 0, 1 => 15, 2 => 30, 3 => 40, 4 => "40A"];
+
+$_SESSION['score1'] = $pointsMap[$_SESSION['joueur1']];
+$_SESSION['score2'] = $pointsMap[$_SESSION['joueur2']];
 
 
 include_once"$racine/vue/entete.html.php";
