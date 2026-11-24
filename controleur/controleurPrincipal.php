@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Description de controleurPrincipal.php
  *
@@ -9,9 +10,13 @@
  */
 include_once"getRacine.php";
 
-
 // Par défaut le fichier à charger est l'accueil, le controleur principal va donc charger le controleur de accueil
-$fichier = "c_Accueil.php";
+
+if (isset($_GET['action']) && $_GET['action'] == 'stat') {
+    $fichier = "c_Stat.php";
+} else {
+    $fichier = "c_Accueil.php";
+}
 
 
 include_once"$racine/controleur/$fichier";

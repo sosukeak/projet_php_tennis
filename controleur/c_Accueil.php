@@ -34,6 +34,20 @@ if (isset($_POST['ajouter2']))  {
     $_SESSION['joueur2']++ ;
 }
 
+if(isset($_POST['demarrer'])){
+    $_SESSION['joueur1'] = 0 ;
+    $_SESSION['joueur2'] = 0 ;
+    
+}
+
+if(isset($_POST['stat'])){
+    header("Location: index.php?action=stat");
+    exit();
+}
+
+
+
+
 /*
  * 
  * creation de l'option d'enlever des points : cause d'une erreur ou autre 
@@ -88,7 +102,7 @@ if($_SESSION['joueur2']===4) {
  */
 
 if (!isset($_SESSION['jeu1'])) {
-    $_SESSION['jeu2'] = 0 ;
+    $_SESSION['jeu1'] = 0 ;
 }
 if (!isset($_SESSION['jeu2'])) {
     $_SESSION['jeu2'] = 0 ;
